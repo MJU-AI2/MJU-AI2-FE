@@ -1,13 +1,14 @@
-import Router from '@/routes/Router'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import GlobalStyle from '@/style/globalStyle'
+
+import Router from '@/constants/Router'
+import GlobalFontStyle from '@/styles/globalFontStyle'
 
 const queryClient = new QueryClient()
 
 function App() {
   return (
     <>
-      <GlobalStyle />
+      <GlobalFontStyle />
       <QueryClientProvider client={queryClient}>
         <Router />
       </QueryClientProvider>
