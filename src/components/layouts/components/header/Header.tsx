@@ -31,12 +31,8 @@ const Header: React.FC = () => {
 
             <DesktopNav>
               <NavLink href="/" icon={<Home size={16} />} text="홈" />
-              <NavLink href="/lessons" icon={<Book size={16} />} text="수업" />
-              <NavLink
-                href="/student"
-                icon={<PenTool size={16} />}
-                text="실습하기"
-              />
+              <NavLink href="/" icon={<Book size={16} />} text="수업" />
+              <NavLink href="/" icon={<PenTool size={16} />} text="실습하기" />
             </DesktopNav>
           </Flex>
 

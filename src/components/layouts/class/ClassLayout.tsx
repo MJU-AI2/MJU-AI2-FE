@@ -1,13 +1,13 @@
 import { Outlet } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 
-import { theme } from '@/styles/theme'
-import { MainContentContainer } from '@/components/layouts/layout.styled'
 import Header from '@/components/layouts/components/header/Header'
 import Footer from '@/components/layouts/components/footer/Footer'
+import { theme } from '@/styles/theme'
+import { MainContentContainer } from '@/components/layouts/layout.styled'
 import { Container, Flex } from '@/styles/styles'
 
-const BaseLayout = () => {
+const ClassLayout = () => {
   return (
     <ThemeProvider theme={theme}>
       <Flex direction="column" style={{ minHeight: '100vh' }}>
@@ -23,4 +23,4 @@ const BaseLayout = () => {
   )
 }
 
-export default BaseLayout
+export default ClassLayout

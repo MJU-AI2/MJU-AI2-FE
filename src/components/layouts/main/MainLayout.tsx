@@ -7,7 +7,7 @@ import Header from '@/components/layouts/components/header/Header'
 import Footer from '@/components/layouts/components/footer/Footer'
 import { Container, Flex } from '@/styles/styles'
 
-const StudentLayout = () => {
+const MainLayout = () => {
   return (
     <ThemeProvider theme={theme}>
       <Flex direction="column" style={{ minHeight: '100vh' }}>
@@ -23,4 +23,4 @@ const StudentLayout = () => {
   )
 }
 
-export default StudentLayout
+export default MainLayout
