@@ -8,4 +8,4 @@ export const PROBLEM_TYPE_OPTIONS: ProblemTypeOption[] = [
   { value: 'short_answer', label: '주관식' },
 ]
 
-export const DIFFICULTY_OPTIONS = ['쉬움', '보통', '어려움'] as const
+export const DIFFICULTY_OPTIONS = ['EASY', 'MEDIUM', 'HARD'] as const

@@ -1,0 +1,40 @@
+import type { Problem } from '@/types/domain.types'
+
+export const DUMMY_PROBLEMS: Problem[] = [
+  {
+    id: '1',
+    title: '간단한 계산기 만들기',
+    content: '덧셈과 뺄셈이 가능한 계산기를 만들어보세요.',
+    description: '기본적인 사칙연산 구현하기',
+    difficulty: 'EASY',
+    targetGrade: 3,
+    hints: ['함수를 사용해보세요', '조건문을 활용하세요'],
+    sampleAnswer: 'console.log(1 + 1)',
+    createdAt: '2024-03-15',
+    isPublic: true,
+  },
+  {
+    id: '2',
+    title: '구구단 출력하기',
+    content: '2단부터 9단까지 구구단을 출력해보세요.',
+    description: '반복문 학습하기',
+    difficulty: 'MEDIUM',
+    targetGrade: 4,
+    hints: ['이중 반복문을 사용해보세요'],
+    sampleAnswer: 'for(let i = 2; i <= 9; i++)',
+    createdAt: '2024-03-16',
+    isPublic: true,
+  },
+  {
+    id: '3',
+    title: '배열 정렬하기',
+    content: '주어진 숫자 배열을 오름차순으로 정렬해보세요.',
+    description: '배열과 정렬 알고리즘',
+    difficulty: 'HARD',
+    targetGrade: 6,
+    hints: ['버블정렬을 고려해보세요'],
+    sampleAnswer: 'array.sort((a, b) => a - b)',
+    createdAt: '2024-03-17',
+    isPublic: true,
+  },
+]

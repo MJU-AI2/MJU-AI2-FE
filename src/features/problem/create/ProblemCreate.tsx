@@ -1,15 +1,13 @@
 import React, { useState } from 'react'
-import { useMutation } from '@tanstack/react-query'
-import toast from 'react-hot-toast'
 
 import { Flex, Container, Text } from '@/styles'
-import { problemsApi } from '@/services/ProblemsApi'
 import type { ProblemFormData } from '@/types/domain.types'
 import { ProblemForm } from '@/features/problem/create/components/ProblemForm'
+import { useCreateProblemMutation } from '@/features/problem/create/hooks/useProblemCreate'
 
 const INITIAL_FORM_DATA: ProblemFormData = {
   grade: 1,
-  difficulty: '쉬움',
+  difficulty: 'EASY',
   topic: '',
   type: 'multiple_choice',
   description: '',
@@ -18,16 +16,7 @@ const INITIAL_FORM_DATA: ProblemFormData = {
 const ProblemCreate = () => {
   const [formData, setFormData] = useState<ProblemFormData>(INITIAL_FORM_DATA)
 
-  const { mutate, isPending } = useMutation({
-    mutationFn: problemsApi.create,
-    onSuccess: () => {
-      toast.success('문제가 성공적으로 생성되었습니다.')
-    },
-    onError: (error) => {
-      toast.error('문제 생성 중 오류가 발생했습니다.')
-      console.error('Problem creation failed:', error)
-    },
-  })
+  const { mutate, isPending } = useCreateProblemMutation()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -40,7 +29,7 @@ const ProblemCreate = () => {
     >
   ) => {
     const { name, value } = e.target
-    setFormData((prev: any) => ({ ...prev, [name]: value }))
+    setFormData((prev: ProblemFormData) => ({ ...prev, [name]: value }))
   }
 
   return (

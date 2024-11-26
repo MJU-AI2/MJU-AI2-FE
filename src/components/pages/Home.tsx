@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { Container, Flex, Button, Text } from '@/styles'
 import { useStats } from '@/components/hooks/useStats'
-import { Banner } from '@/styles/banner.styles'
+import { Banner } from '@/components/pages/styles/banner.styles'
 
 const Home = () => {
   const navigate = useNavigate()

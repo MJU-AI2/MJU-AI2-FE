@@ -22,7 +22,7 @@ const Header: React.FC = () => {
           <Flex justify="between" align="center">
             <LogoContainer>
               <Code size={24} />
-              <span>코딩친구, 딸각!</span>
+              <span>코딩친구, 플릭!</span>
             </LogoContainer>
 
             <MobileMenuButton onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -31,8 +31,12 @@ const Header: React.FC = () => {
 
             <DesktopNav>
               <NavLink href="/" icon={<Home size={16} />} text="홈" />
-              <NavLink href="/" icon={<Book size={16} />} text="수업" />
-              <NavLink href="/" icon={<PenTool size={16} />} text="실습하기" />
+              <NavLink href="/problems" icon={<Book size={16} />} text="수업" />
+              <NavLink
+                href="/problems"
+                icon={<PenTool size={16} />}
+                text="실습하기"
+              />
             </DesktopNav>
           </Flex>
 
