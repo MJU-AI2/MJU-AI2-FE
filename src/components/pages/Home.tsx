@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 
 import { Container, Flex, Button, Text } from '@/styles/styles'
-import { useStats } from '@/hooks/useStats'
+import { useStats } from '@/components/hooks/useStats'
 import { Banner } from '@/styles/banner.styles'
 
 const Home = () => {
@@ -20,7 +20,7 @@ const Home = () => {
     <Container>
       <Banner>
         <Text variant="h1" color="white" className="animate-bounce">
-          Welcome to CodePal Pings!🚀
+          Welcome to CodePal, Plick!🚀
         </Text>
         {stats && (
           <Flex justify="center" gap={4} wrap="wrap">

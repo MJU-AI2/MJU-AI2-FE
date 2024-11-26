@@ -29,7 +29,7 @@ export const Container = styled.div<ContainerProps & { theme: Theme }>`
   width: 100%;
   max-width: ${({ fluid }) => (fluid ? '100%' : '1200px')};
   margin: 0 auto;
-  padding: ${({ padding = 1 }) => `${padding}rem`};
+  padding-inline: ${({ padding = 1 }) => `${padding}rem`};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
     max-width: 960px;
@@ -93,6 +93,7 @@ export const Text = styled.p<TextProps & { theme: Theme }>`
           ${baseStyle}
           font-size: 2.5rem; 
           font-weight: bold;
+          padding-bottom: 0.5rem;
         `
       case 'h2':
         return `

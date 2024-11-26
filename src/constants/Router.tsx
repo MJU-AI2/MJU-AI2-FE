@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-import NotFound from '@/pages/NotFount'
-import Home from '@/pages/Home'
+import NotFound from '@/components/pages/NotFount'
+import Home from '@/components/pages/Home'
 import BaseLayout from '@/components/layouts/baseLayout'
 import StudentLayout from '@/components/layouts/studentLayout'
 

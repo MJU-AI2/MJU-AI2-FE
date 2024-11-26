@@ -7,7 +7,7 @@ import {
   FooterTitle,
 } from '@/components/layouts/layout.styled'
 import { Container } from '@/styles/styles'
-import { useStats } from '@/hooks/useStats'
+import { useStats } from '@/components/hooks/useStats'
 
 const Footer = () => {
   const { data: stats } = useStats()
