@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
 
-import { problemsApi } from '@/services/ProblemsApi'
+import { problemsApi } from '@/services/problemsApi'
 import { PROBLEMS_QUERY_KEY } from '@/features/problem/retrieve/hooks/useProblemsQuery'
 
 export const useDeleteProblemsMutation = () => {

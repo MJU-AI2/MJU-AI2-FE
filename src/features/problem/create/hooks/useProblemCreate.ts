@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
 
-import { problemsApi } from '@/services/ProblemsApi'
+import { problemsApi } from '@/services/problemsApi'
 
 export const useCreateProblemMutation = () => {
   return useMutation({
