@@ -5,7 +5,7 @@ import Header from '@/components/layouts/components/header/Header'
 import Footer from '@/components/layouts/components/footer/Footer'
 import { theme } from '@/styles/theme'
 import { MainContentContainer } from '@/components/layouts/layout.styled'
-import { Container, Flex } from '@/styles/styles'
+import { Container, Flex } from '@/styles'
 
 const ClassLayout = () => {
   return (

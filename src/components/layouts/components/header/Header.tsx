@@ -10,7 +10,7 @@ import {
   NavContainer,
 } from '@/components/layouts/layout.styled'
 import NavLink from '@/components/layouts/components/header/NavLink'
-import { Container, Flex } from '@/styles/styles'
+import { Container, Flex } from '@/styles'
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)

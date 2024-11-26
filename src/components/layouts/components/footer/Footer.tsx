@@ -6,7 +6,7 @@ import {
   FooterText,
   FooterTitle,
 } from '@/components/layouts/layout.styled'
-import { Container } from '@/styles/styles'
+import { Container } from '@/styles'
 import { useStats } from '@/components/hooks/useStats'
 
 const Footer = () => {

@@ -53,8 +53,7 @@ export const Button = styled.button<ButtonProps & { theme: Theme }>`
         ? '1rem 2rem'
         : '0.75rem 1.5rem'};
   font-size: ${({ size = 'md' }) =>
-    size === 'sm' ? '0.875rem' : size === 'lg' ? '1.125rem' : '1rem'};
-  font-weight: 600;
+    size === 'sm' ? '0.1rem' : size === 'lg' ? '1.25rem' : '1rem'};
   border: none;
   border-radius: 8px;
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
@@ -116,12 +115,6 @@ export const Text = styled.p<TextProps & { theme: Theme }>`
       case 'h5':
         return `
           ${baseStyle}
-          font-size: 1.25rem; 
-          font-weight: bold;
-        `
-      case 'h6':
-        return `
-          ${baseStyle}
           font-size: 1rem; 
           font-weight: bold;
         `
@@ -139,8 +132,6 @@ export const Text = styled.p<TextProps & { theme: Theme }>`
   }}
   color: ${({ color = 'text', theme }) => theme.colors[color]};
   text-align: ${({ align = 'left' }) => align};
-  font-weight: ${({ weight = 'normal' }) =>
-    weight === 'medium' ? 500 : weight === 'bold' ? 700 : 400};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     ${({ variant = 'body' }) => {
@@ -154,12 +145,101 @@ export const Text = styled.p<TextProps & { theme: Theme }>`
         case 'h4':
           return 'font-size: 1.25rem;'
         case 'h5':
-          return 'font-size: 1.125rem;'
-        case 'h6':
           return 'font-size: 1rem;'
         default:
           return ''
       }
     }}
+  }
+`
+
+export const Input = styled.input`
+  padding: 0.8rem 1rem;
+  border: 2px solid ${({ theme }) => theme.colors.border};
+  border-radius: 15px;
+  background-color: ${({ theme }) => theme.colors.white};
+  font-size: 1rem;
+  color: ${({ theme }) => theme.colors.text};
+  transition: all 0.2s ease;
+  width: 100%;
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.textLight};
+  }
+
+  &:hover,
+  &:focus {
+    outline: none;
+    border-color: ${({ theme }) => theme.colors.primary};
+    box-shadow: 0 0 0 3px ${({ theme }) => `${theme.colors.primary}33`};
+  }
+`
+
+export const Select = styled.select`
+  padding: 0.8rem 2.5rem 0.8rem 1rem;
+  border: 2px solid ${({ theme }) => theme.colors.border};
+  border-radius: 15px;
+  background-color: ${({ theme }) => theme.colors.white};
+  font-size: 1rem;
+  color: ${({ theme }) => theme.colors.text};
+  cursor: pointer;
+  appearance: none;
+  transition: all 0.2s ease;
+
+  &:hover,
+  &:focus {
+    outline: none;
+    border-color: ${({ theme }) => theme.colors.primary};
+    box-shadow: 0 0 0 3px ${({ theme }) => `${theme.colors.primary}33`};
+  }
+
+  option {
+    padding: 8px;
+  }
+`
+
+export const TextArea = styled.textarea`
+  padding: 0.8rem 1rem;
+  border: 2px solid ${({ theme }) => theme.colors.border};
+  border-radius: 15px;
+  background-color: ${({ theme }) => theme.colors.white};
+  font-size: 1rem;
+  color: ${({ theme }) => theme.colors.text};
+  transition: all 0.2s ease;
+  width: 100%;
+  min-height: 120px;
+  resize: none;
+  line-height: 1.5;
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.textLight};
+  }
+
+  &:hover,
+  &:focus {
+    outline: none;
+    border-color: ${({ theme }) => theme.colors.primary};
+    box-shadow: 0 0 0 3px ${({ theme }) => `${theme.colors.primary}33`};
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: ${({ theme }) => theme.colors.background};
+    border-radius: 4px;
+    margin-block: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.colors.primary}98;
+    border-radius: 4px;
+
+    border: 4px solid transparent;
+
+    &:hover {
+      background: ${({ theme }) => theme.colors.secondary}95;
+    }
   }
 `

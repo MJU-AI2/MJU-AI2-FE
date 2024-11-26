@@ -3,31 +3,31 @@ import { createGlobalStyle } from 'styled-components'
 const GlobalFontStyle = createGlobalStyle`
     @font-face {
         font-family: 'Pretendard';
-        font-weight: 400;
+        font-size: 1rem;
         src: url('/fonts/Pretendard-Regular.woff2') format('woff2');
     }
 
     @font-face {
         font-family: 'Pretendard';
-        font-weight: 500;
+        font-size: 1.5rem;
         src: url('/fonts/Pretendard-Medium.woff2') format('woff2');
     }
 
     @font-face {
         font-family: 'Pretendard';
-        font-weight: 600;
+        font-size: 1.75rem;
         src: url('/fonts/Pretendard-SemiBold.woff2') format('woff2');
     }
 
     @font-face {
         font-family: 'Pretendard';
-        font-weight: 700;
+        font-size: 2rem;
         src: url('/fonts/Pretendard-Bold.woff2') format('woff2');
     }
 
     @font-face {
         font-family: 'Pretendard';
-        font-weight: 800;
+        font-size: 2.5rem;
         src: url('/fonts/Pretendard-ExtraBold.woff2') format('woff2');
     }
 

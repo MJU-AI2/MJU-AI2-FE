@@ -4,8 +4,8 @@ import MainLayout from '@/components/layouts/main'
 import ClassLayout from '@/components/layouts/class'
 import NotFound from '@/components/pages/NotFount'
 import Home from '@/components/pages/Home'
-import AssignmentCreate from '@/features/assignment/create'
-import AssignmentRetrieve from '@/features/assignment/retrieve'
+import ProblemCreate from '@/features/problem/create'
+import ProblemRetrieve from '@/features/problem/retrieve'
 
 const Router = () => {
   return (
@@ -13,8 +13,8 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
-          <Route path={'problems'} element={<AssignmentRetrieve />} />
-          <Route path={'problems/create'} element={<AssignmentCreate />} />
+          <Route path={'problems'} element={<ProblemRetrieve />} />
+          <Route path={'problems/create'} element={<ProblemCreate />} />
         </Route>
         <Route path="/student" element={<ClassLayout />}>
           <Route index element={<Home />} />

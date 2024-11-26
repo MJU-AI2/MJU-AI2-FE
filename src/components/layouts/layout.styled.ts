@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import type { MobileNavProps, NavLinkStyleProps } from '@/types/common.types'
-import { Flex } from '@/styles/styles'
+import { Flex } from '@/styles'
 
 export const HeaderContainer = styled.header`
   position: sticky;

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
-import { Container, Flex, Button, Text } from '@/styles/styles'
+import { Container, Flex, Button, Text } from '@/styles'
 import { useStats } from '@/components/hooks/useStats'
 import { Banner } from '@/styles/banner.styles'
 
