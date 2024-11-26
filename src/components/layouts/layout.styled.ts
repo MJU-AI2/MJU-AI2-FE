@@ -1,49 +1,7 @@
 import styled from 'styled-components'
 
-import type { ContainerProps, FlexProps } from '@/types/common.types'
-
-export const Flex = styled.div<FlexProps>`
-  display: flex;
-  flex-direction: ${({ direction = 'row' }) => direction};
-  justify-content: ${({ justify = 'start' }) =>
-    justify === 'between'
-      ? 'space-between'
-      : justify === 'around'
-        ? 'space-around'
-        : justify === 'evenly'
-          ? 'space-evenly'
-          : justify === 'center'
-            ? 'center'
-            : `flex-${justify}`};
-  align-items: ${({ align = 'stretch' }) =>
-    align === 'start' ? 'flex-start' : align === 'end' ? 'flex-end' : align};
-  gap: ${({ gap = 0 }) => `${gap}rem`};
-  flex-wrap: ${({ wrap = 'nowrap' }) => wrap};
-`
-
-export const Container = styled.div<ContainerProps>`
-  width: 100%;
-  margin: 0 auto;
-  padding: ${({ padding = 0 }) => `0 ${padding}rem`};
-  max-width: ${({ fluid }) => (fluid ? '100%' : '1200px')};
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.xl}) {
-    max-width: 1140px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
-    max-width: 960px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-    max-width: 720px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
-    max-width: 540px;
-    padding: ${({ padding = 0 }) => `0 ${padding + 0.5}rem`};
-  }
-`
+import type { MobileNavProps, NavLinkStyleProps } from '@/types/common.types'
+import { Flex } from '@/styles/styles'
 
 export const HeaderContainer = styled.header`
   position: sticky;
@@ -72,7 +30,7 @@ export const MobileMenuButton = styled.button`
   padding: 8px;
   cursor: pointer;
 
-  @media (min-width: 768px) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     display: none;
   }
 `
@@ -82,26 +40,27 @@ export const DesktopNav = styled.div`
   align-items: center;
   gap: 1.5rem;
 
-  @media (min-width: 768px) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     display: flex;
   }
 `
 
-export const MobileNav = styled.div<{ isOpen: boolean }>`
+export const MobileNav = styled.div<MobileNavProps>`
   display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
   padding: 1rem 0;
 
-  @media (min-width: 768px) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     display: none;
   }
 `
 
-export const StyledNavLink = styled.a<{ mobile?: boolean }>`
+export const StyledNavLink = styled.a<NavLinkStyleProps>`
   display: flex;
   align-items: center;
   gap: 0.5rem;
   color: ${({ theme }) => theme.colors.white};
   transition: color 0.3s ease;
+
   ${({ mobile }) =>
     mobile &&
     `
@@ -130,7 +89,7 @@ export const FooterGrid = styled.div`
   grid-template-columns: 1fr;
   gap: 2rem;
 
-  @media (min-width: 768px) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     grid-template-columns: repeat(3, 1fr);
   }
 `

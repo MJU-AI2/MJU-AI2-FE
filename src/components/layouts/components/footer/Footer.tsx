@@ -1,8 +1,4 @@
-import React from 'react'
-import { useQuery } from '@tanstack/react-query'
-
 import {
-  Container,
   FooterContainer,
   FooterDivider,
   FooterGrid,
@@ -10,21 +6,11 @@ import {
   FooterText,
   FooterTitle,
 } from '@/components/layouts/layout.styled'
-import type { StatisticsData } from '@/types/common.types'
-import { DateUtils } from '@/utils/date'
+import { Container } from '@/styles/styles'
+import { useStats } from '@/hooks/useStats'
 
-const Footer: React.FC = () => {
-  const { data: stats } = useQuery<StatisticsData>({
-    queryKey: ['stats'],
-    queryFn: async () => {
-      // 실제 API 호출로 대체 가능
-      return {
-        studentCount: 1234,
-        lessonCount: 50,
-        lastUpdate: DateUtils.now(),
-      }
-    },
-  })
+const Footer = () => {
+  const { data: stats } = useStats()
 
   return (
     <FooterContainer>

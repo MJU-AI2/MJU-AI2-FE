@@ -2,9 +2,7 @@ import React, { useState } from 'react'
 import { Code, Home, Book, PenTool, Menu, X } from 'lucide-react'
 
 import {
-  Container,
   DesktopNav,
-  Flex,
   HeaderContainer,
   LogoContainer,
   MobileMenuButton,
@@ -12,6 +10,7 @@ import {
   NavContainer,
 } from '@/components/layouts/layout.styled'
 import NavLink from '@/components/layouts/components/header/NavLink'
+import { Container, Flex } from '@/styles/styles'
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
