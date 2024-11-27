@@ -27,3 +27,10 @@ export interface Problem {
   qrCodeUrl?: string
   isPublic: boolean
 }
+
+export interface PaginatedResponse {
+  page: number
+  size: number
+  total: number
+  content: Problem[]
+}

@@ -69,7 +69,7 @@ export const Button = styled.button<ButtonProps & { theme: Theme }>`
       : variant === 'third'
         ? theme.colors.accent
         : variant === 'ghost'
-          ? 'transparent'
+          ? theme.colors.footer
           : theme.colors.primary};
 
   color: ${({ variant = 'primary', theme }) =>

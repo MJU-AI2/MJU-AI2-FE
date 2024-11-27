@@ -64,3 +64,9 @@ export interface MobileNavProps {
 export interface NavLinkStyleProps {
   mobile?: boolean
 }
+
+export interface PaginationProps {
+  currentPage: number
+  totalPages: number
+  onPageChange: (page: number) => void
+}

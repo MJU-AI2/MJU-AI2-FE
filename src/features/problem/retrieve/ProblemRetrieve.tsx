@@ -8,10 +8,19 @@ import { useCreateProblemSetMutation } from '@/features/problem/retrieve/hooks/u
 import { useProblemSelection } from '@/features/problem/retrieve/hooks/useProblemSelection'
 import { ProblemListHeader } from '@/features/problem/retrieve/components/ProblemListHeader'
 import { QRCodeModal } from '@/features/problem/retrieve/components/QRCodeModal'
+import { Pagination } from '@/components/ui/Pagination'
+
+const PAGE_SIZE = 10
 
 export const ProblemRetrieve = () => {
+  const [page, setPage] = useState(1)
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const { data: problems, isLoading } = useProblemsQuery()
+
+  const { data: problemsData, isLoading } = useProblemsQuery({
+    page,
+    size: PAGE_SIZE,
+  })
+
   const deleteProblemsMutation = useDeleteProblemsMutation()
   const createProblemSetMutation = useCreateProblemSetMutation()
 
@@ -21,7 +30,7 @@ export const ProblemRetrieve = () => {
     handleSelect,
     handleSelectAll,
     allSelected,
-  } = useProblemSelection(problems)
+  } = useProblemSelection(problemsData?.content)
 
   const handleDelete = () => {
     if (selectedProblems.length === 0) return
@@ -36,9 +45,16 @@ export const ProblemRetrieve = () => {
     })
   }
 
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage)
+    setSelectedProblems([])
+  }
+
   if (isLoading) {
     return <div>Loading...</div>
   }
+
+  const totalPages = Math.ceil((problemsData?.total || 0) / PAGE_SIZE)
 
   return (
     <Container>
@@ -53,10 +69,17 @@ export const ProblemRetrieve = () => {
           onDelete={handleDelete}
         />
         <ProblemList
-          problems={problems || []}
+          problems={problemsData?.content || []}
           selectedProblems={selectedProblems}
           onSelect={handleSelect}
         />
+        <Flex justify={'evenly'}>
+          <Pagination
+            currentPage={page}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
+        </Flex>
         {createProblemSetMutation.data && (
           <QRCodeModal
             isOpen={isModalOpen}
@@ -68,5 +91,4 @@ export const ProblemRetrieve = () => {
     </Container>
   )
 }
-
 export default ProblemRetrieve
