@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import { Flex, Container } from '@/styles'
 import { ProblemList } from '@/features/problem/retrieve/components/ProblemList'
 import { useProblemsQuery } from '@/features/problem/retrieve/hooks/useProblemsQuery'
@@ -5,8 +7,10 @@ import { useDeleteProblemsMutation } from '@/features/problem/retrieve/hooks/use
 import { useCreateProblemSetMutation } from '@/features/problem/retrieve/hooks/useCreateProblemSetMutation'
 import { useProblemSelection } from '@/features/problem/retrieve/hooks/useProblemSelection'
 import { ProblemListHeader } from '@/features/problem/retrieve/components/ProblemListHeader'
+import { QRCodeModal } from '@/features/problem/retrieve/components/QRCodeModal'
 
 export const ProblemRetrieve = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const { data: problems, isLoading } = useProblemsQuery()
   const deleteProblemsMutation = useDeleteProblemsMutation()
   const createProblemSetMutation = useCreateProblemSetMutation()
@@ -27,8 +31,9 @@ export const ProblemRetrieve = () => {
 
   const handleCreateSet = () => {
     if (selectedProblems.length === 0) return
-    createProblemSetMutation.mutate(selectedProblems)
-    setSelectedProblems([])
+    createProblemSetMutation.mutate(selectedProblems, {
+      onSuccess: () => setIsModalOpen(true),
+    })
   }
 
   if (isLoading) {
@@ -42,6 +47,7 @@ export const ProblemRetrieve = () => {
         <ProblemListHeader
           allSelected={allSelected}
           selectedProblemsCount={selectedProblems.length}
+          selectedProblemIds={selectedProblems}
           onSelectAll={handleSelectAll}
           onCreateSet={handleCreateSet}
           onDelete={handleDelete}
@@ -51,6 +57,13 @@ export const ProblemRetrieve = () => {
           selectedProblems={selectedProblems}
           onSelect={handleSelect}
         />
+        {createProblemSetMutation.data && (
+          <QRCodeModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            qrCodeUrl={createProblemSetMutation.data}
+          />
+        )}
       </Flex>
     </Container>
   )

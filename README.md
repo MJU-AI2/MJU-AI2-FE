@@ -1,6 +1,6 @@
 # MJU-AI2-FE
 
-명지대학교 AI2 프로젝트의 프론트엔드 레포지토리입니다.
+명지대학교 AI2 프로젝트, "코딩친구, 플릭"의 프론트엔드 레포지토리입니다.
 
 ## 🛠 Tech Stack
 
@@ -68,9 +68,6 @@
 
 # pnpm 설치
 npm install -g pnpm
-
-# corepack 활성화 (선택사항: 프로젝트의 pnpm 버전 강제)
-corepack enable
 ```
 
 ### Installation & Development
@@ -84,12 +81,6 @@ pnpm dev
 
 # 빌드
 pnpm build
-
-# 린트 검사
-pnpm lint
-
-# 린트 자동 수정
-pnpm lint:fix
 ```
 
 ## 📝 Commit Convention

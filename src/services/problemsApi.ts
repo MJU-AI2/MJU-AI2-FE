@@ -20,29 +20,16 @@ export const problemsApi = {
     // return data.data
   },
   deleteMany: async (problemIds: string[]): Promise<void> => {
-    problemIds.forEach((id) => {
-      const index = DUMMY_PROBLEMS.findIndex((p) => p.id === id)
-      if (index !== -1) {
-        DUMMY_PROBLEMS.splice(index, 1)
-      }
+    await axiosInstance.delete('/api/problems', {
+      data: { problemIds },
     })
-    return Promise.resolve()
   },
-  // deleteMany: async (problemIds: string[]): Promise<void> => {
-  //   return Promise.resolve()
-  //   await axiosInstance.delete('/api/problems', {
-  //     data: { problemIds },
-  //   })
-  // },
 
-  createSet: async (problemIds: string[]): Promise<void> => {
-    console.log('Created problem set with problems:', problemIds)
-    return Promise.resolve()
+  createSet: async (problemIds: string[]): Promise<string> => {
+    const { data } = await axiosInstance.post<ApiResponse<string>>(
+      '/api/problems/set',
+      problemIds
+    )
+    return data.data
   },
-  // createSet: async (problemIds: string[]): Promise<void> => {
-  //   return Promise.resolve()
-  //   await axiosInstance.post('/api/problems/set', {
-  //     problemIds,
-  //   })
-  // },
 }

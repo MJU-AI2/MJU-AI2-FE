@@ -3,6 +3,7 @@ import { Flex, Button } from '@/styles'
 interface ProblemListHeaderProps {
   allSelected: boolean | undefined
   selectedProblemsCount: number
+  selectedProblemIds: string[]
   onSelectAll: (selected: boolean) => void
   onCreateSet: () => void
   onDelete: () => void
