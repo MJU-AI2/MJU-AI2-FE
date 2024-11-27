@@ -16,6 +16,9 @@ export default [
       ecmaVersion: 2020,
       globals: globals.browser,
     },
+    linterOptions: {
+      reportUnusedDisableDirectives: true,
+    },
     plugins: {
       '@typescript-eslint': tsPlugin,
       'react-hooks': reactHooks,
@@ -28,15 +31,35 @@ export default [
     rules: {
       '@typescript-eslint/no-unused-vars': 'warn',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
-      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/consistent-type-imports': [
+        'warn',
+        {
+          prefer: 'type-imports',
+        },
+      ],
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
       ],
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
+      'react/react-in-jsx-scope': 'off',
+      'react/prop-types': 'off',
       'prettier/prettier': 'error',
       'import/prefer-default-export': 'off',
-      'react/react-in-jsx-scope': 'off',
-      quotes: ['error', 'single'],
+      'import/order': [
+        'error',
+        {
+          groups: [
+            ['builtin', 'external'],
+            'internal',
+            ['parent', 'sibling'],
+            'index',
+          ],
+          'newlines-between': 'always',
+        },
+      ],
       'import/extensions': [
         'error',
         'ignorePackages',
@@ -46,6 +69,7 @@ export default [
           tsx: 'never',
         },
       ],
+      quotes: ['error', 'single'],
     },
   },
 ]
