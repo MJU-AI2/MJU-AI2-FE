@@ -8,6 +8,7 @@ import type {
 } from '@/types/domain.types'
 import { DUMMY_PROBLEMS } from '@/features/problem/retrieve/mocks/dummyData'
 import type { UseProblemsQueryParams } from '@/types/hooks.types'
+import axiosBlob from '@/services/axiosBlobInstance'
 
 export const problemsApi = {
   create: async (formData: ProblemFormData): Promise<Problem> => {
@@ -22,7 +23,7 @@ export const problemsApi = {
     page,
     size,
   }: UseProblemsQueryParams): Promise<PaginatedResponse> => {
-    console.log(page, size)
+    console.log(size + page)
     return Promise.resolve(DUMMY_PROBLEMS)
     // const { data } = await axiosInstance.get<ApiResponse<PaginatedResponse>>(
     //   'api/v1/quiz/all',
@@ -42,12 +43,9 @@ export const problemsApi = {
     })
   },
 
-  createSet: async (problemIds: string[]): Promise<string> => {
-    const { data } = await axiosInstance.post<ApiResponse<string>>(
-      '/api/problems/set',
-      problemIds
-    )
-    return data.data
+  createSet: async (): Promise<Blob> => {
+    const response = await axiosBlob.get('/api/v1/quiz/QR/1')
+    return response.data
   },
 }
 

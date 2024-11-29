@@ -4,7 +4,7 @@ import { Modal } from '@/components/ui/Modal'
 interface QRCodeModalProps {
   isOpen: boolean
   onClose: () => void
-  qrCodeUrl: string
+  qrCodeUrl?: string | null
 }
 
 export const QRCodeModal = ({
@@ -18,7 +18,7 @@ export const QRCodeModal = ({
         <Flex direction="column" align="center" gap={2}>
           <Text variant="h3">문제집 QR 코드</Text>
           <img
-            src={`/api/placeholder/${qrCodeUrl}`}
+            src={`${qrCodeUrl}`}
             alt="문제집 QR 코드"
             width={200}
             height={200}
@@ -27,10 +27,13 @@ export const QRCodeModal = ({
             <Button
               variant="primary"
               onClick={() => {
-                const link = document.createElement('a')
-                link.href = qrCodeUrl
-                link.download = '문제집_QR코드.png'
-                link.click()
+                if (qrCodeUrl) {
+                  // URL이 있을 때만 다운로드
+                  const link = document.createElement('a')
+                  link.href = qrCodeUrl
+                  link.download = '문제집_QR코드.png'
+                  link.click()
+                }
               }}
             >
               QR 코드 다운로드
