@@ -18,7 +18,7 @@ export const ProblemRetrieve = () => {
   const { createSet, qrCodeUrl } = useCreateProblemSet()
 
   const { data: problemsData, isLoading } = useProblemsQuery({
-    page,
+    page: page - 1,
     size: PAGE_SIZE,
   })
 
