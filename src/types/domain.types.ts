@@ -3,6 +3,7 @@ import type {
   CATEGORY_OPTIONS,
   DIFFICULTY_OPTIONS,
   QUIZ_TYPE_OPTIONS,
+  RESULT_TYPE_OPTIONS,
   TOPIC_OPTIONS,
 } from '@/constants/problem'
 
@@ -12,6 +13,7 @@ export type AlgorithmLanguage =
   (typeof ALGORITHM_LANGUAGE_OPTIONS)[number]['value']
 export type Difficulty = (typeof DIFFICULTY_OPTIONS)[number]['value']
 export type QuizType = (typeof QUIZ_TYPE_OPTIONS)[number]['value']
+export type ResultType = (typeof RESULT_TYPE_OPTIONS)[number]['value']
 
 export interface ProblemTypeOption {
   value: string
@@ -41,4 +43,10 @@ export interface PaginatedResponse {
   size: number
   total: number
   content: Problem[]
+}
+
+export interface QuizResult {
+  successRate: number
+  totalQuestions: number
+  correctAnswers: number
 }

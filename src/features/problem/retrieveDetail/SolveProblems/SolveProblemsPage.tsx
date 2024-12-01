@@ -1,30 +1,40 @@
-import { Container, Flex, Button } from '@/styles'
+import { useProblemsQuery } from '@/features/problem/retrieve/hooks/useProblemsQuery'
+import { useAnswersState } from '@/features/problem/retrieveDetail/hooks/useAnswersState'
+import { useSubmitAnswers } from '@/features/problem/retrieveDetail/hooks/useSubmitAnswers'
 import { ErrorFallback } from '@/components/ErrorFallback'
-import { useSolveProblems } from '@/features/problem/retrieveDetail/hooks/UseSolveProblemsReturn'
+import { Button, Container, Flex } from '@/styles'
 import { ProblemSolveCard } from '@/features/problem/retrieveDetail/components/ProblemSolveCard'
 
 export default function SolveProblemsPage() {
+  const { answers, handleAnswerChange } = useAnswersState()
+  const { submitAnswers, isSubmitting } = useSubmitAnswers()
   const {
-    problems,
+    data: problemsData,
     isLoading,
     isError,
     error,
-    answers,
-    handleAnswerChange,
-    handleSubmit,
-    isSubmitting,
-  } = useSolveProblems()
+  } = useProblemsQuery({ page: 0, size: 10 })
+
+  const handleSubmit = async () => {
+    const submissionData = {
+      answers: Object.entries(answers).map(([problemId, submitAnswer]) => ({
+        quizID: problemId,
+        submitAnswer,
+      })),
+    }
+    await submitAnswers(submissionData)
+  }
 
   if (isLoading) {
     return <div>Loading...</div>
   }
   if (isError && error) return <ErrorFallback error={error} />
-  if (!problems?.length) return null
+  if (!problemsData?.content.length) return null
 
   return (
     <Container padding={2}>
       <Flex direction="column" gap={3}>
-        {problems.map((problem) => (
+        {problemsData.content.map((problem) => (
           <ProblemSolveCard
             key={problem.id}
             problem={problem}

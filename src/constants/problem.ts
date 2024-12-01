@@ -30,3 +30,8 @@ export const QUIZ_TYPE_OPTIONS: ProblemTypeOption[] = [
   { value: 'MULTIPLE_CHOICE', label: '객관식' },
   { value: 'SUBJECTIVE', label: '주관식' },
 ]
+
+export const RESULT_TYPE_OPTIONS: ProblemTypeOption[] = [
+  { value: 'SUCCESS', label: '정답' },
+  { value: 'WRONG', label: '오답' },
+]

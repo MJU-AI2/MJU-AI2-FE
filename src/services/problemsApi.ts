@@ -8,6 +8,7 @@ import type {
 } from '@/types/domain.types'
 import type {
   SubmissionRequest,
+  SubmissionResult,
   UseProblemsQueryParams,
 } from '@/types/hooks.types'
 import axiosBlob from '@/services/axiosBlobInstance'
@@ -55,8 +56,12 @@ export const problemsApi = {
     return response.data
   },
 
-  submit: async (submitData: SubmissionRequest): Promise<void> => {
-    await axiosInstance.post('/api/v1/submissions', submitData)
+  submit: async (submitData: SubmissionRequest): Promise<SubmissionResult> => {
+    const { data } = await axiosInstance.post<ApiResponse<SubmissionResult>>(
+      '/api/v1/quiz/answerSubmit',
+      submitData
+    )
+    return data.data
   },
 }
 
