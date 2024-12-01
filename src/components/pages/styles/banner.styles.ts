@@ -9,6 +9,6 @@ export const Banner = styled.div`
   );
   border-radius: 12px;
   padding: 4rem 2rem;
-  margin: 2rem 0;
+  margin-bottom: 2rem;
   text-align: center;
 `

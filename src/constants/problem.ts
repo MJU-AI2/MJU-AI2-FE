@@ -2,7 +2,7 @@ import type { ProblemTypeOption } from '@/types/domain.types'
 
 export const CATEGORY_OPTIONS: ProblemTypeOption[] = [
   { value: 'COMPUTER_SCIENCE_TERM', label: '컴퓨팅 용어' },
-  { value: 'CODING_ALGORITHM', label: '코딩 언어 별 알고리즘' },
+  { value: 'CODING_ALGORITHM', label: '프로그래밍 언어' },
 ]
 
 export const TOPIC_OPTIONS: ProblemTypeOption[] = [

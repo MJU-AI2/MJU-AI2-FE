@@ -41,7 +41,6 @@ export const Container = styled.div<ContainerProps & { theme: Theme }>`
 
   @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
     max-width: 100%;
-    padding: ${({ padding = 1 }) => `${padding}rem 1rem`};
   }
 `
 

@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import { Flex, Text } from '@/styles'
+
 export const Card = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 8px;
@@ -42,5 +44,27 @@ export const RadioOption = styled.label`
 
   input {
     margin-right: 12px;
+  }
+`
+
+export const MetaContainer = styled(Flex)`
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+`
+
+export const MetaDivider = styled(Text)`
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    display: none;
+  }
+`
+
+export const MetaItem = styled(Text)`
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    &::before {
+      content: attr(data-label);
+      margin-right: 0.5rem;
+    }
   }
 `

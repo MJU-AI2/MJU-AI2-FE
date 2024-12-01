@@ -3,8 +3,12 @@ import {
   DIFFICULTY_OPTIONS,
   QUIZ_TYPE_OPTIONS,
 } from '@/constants/problem'
-import { Flex, Text } from '@/styles'
 import { findLabelByValue } from '@/components/hooks/useFindLabel'
+import {
+  MetaContainer,
+  MetaDivider,
+  MetaItem,
+} from '@/features/problem/retrieveDetail/styles/problemdetail.styled'
 
 interface ProblemMetaProps {
   difficulty: string
@@ -18,22 +22,22 @@ export function ProblemMeta({
   category,
 }: ProblemMetaProps) {
   return (
-    <Flex gap={1}>
-      <Text variant="caption" color="textLight">
-        난이도: {findLabelByValue(DIFFICULTY_OPTIONS, difficulty)}
-      </Text>
-      <Text variant="caption" color="textLight">
+    <MetaContainer gap={1}>
+      <MetaItem variant="caption" color="textLight" data-label="카테고리:">
+        {findLabelByValue(CATEGORY_OPTIONS, category)}
+      </MetaItem>
+      <MetaDivider variant="caption" color="textLight">
         |
-      </Text>
-      <Text variant="caption" color="textLight">
-        유형: {findLabelByValue(QUIZ_TYPE_OPTIONS, quizType)}
-      </Text>
-      <Text variant="caption" color="textLight">
+      </MetaDivider>
+      <MetaItem variant="caption" color="textLight" data-label="유형:">
+        {findLabelByValue(QUIZ_TYPE_OPTIONS, quizType)}
+      </MetaItem>
+      <MetaDivider variant="caption" color="textLight">
         |
-      </Text>
-      <Text variant="caption" color="textLight">
-        카테고리: {findLabelByValue(CATEGORY_OPTIONS, category)}
-      </Text>
-    </Flex>
+      </MetaDivider>
+      <MetaItem variant="caption" color="textLight" data-label="난이도:">
+        {findLabelByValue(DIFFICULTY_OPTIONS, difficulty)}
+      </MetaItem>
+    </MetaContainer>
   )
 }

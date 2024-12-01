@@ -27,7 +27,7 @@ export const MobileMenuButton = styled.button`
   display: block;
   background: transparent;
   border: none;
-  padding: 8px;
+  padding: 2px;
   cursor: pointer;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
