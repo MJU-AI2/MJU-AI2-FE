@@ -6,9 +6,9 @@ import NotFound from '@/components/pages/NotFount'
 import Home from '@/components/pages/Home'
 import ProblemCreate from '@/features/problem/create'
 import ProblemRetrieve from '@/features/problem/retrieve'
-import ProblemDetailPage from '@/features/problem/retrieveDetail/problemDetail'
-import SolveProblemsPage from '@/features/problem/retrieveDetail/SolveProblems'
+import ProblemDetailPage from '@/features/problem/retrieveDetail'
 import QuizResultPage from '@/features/problem/result'
+import SolveProblemsPage from '@/features/problem/retrieveDetail/SolveProblemsPage'
 
 const Router = () => {
   return (
