@@ -6,11 +6,10 @@ import { ProblemForm } from '@/features/problem/create/components/ProblemForm'
 import { useCreateProblemMutation } from '@/features/problem/create/hooks/useProblemCreate'
 
 const INITIAL_FORM_DATA: ProblemFormData = {
-  grade: 1,
+  category: 'CODING_ALGORITHM',
+  topic: 'JAVA',
   difficulty: 'EASY',
-  topic: '',
-  type: 'multiple_choice',
-  description: '',
+  quizType: 'MULTIPLE_CHOICE',
 }
 
 const ProblemCreate = () => {
