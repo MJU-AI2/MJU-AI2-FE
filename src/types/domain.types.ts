@@ -30,9 +30,10 @@ export interface Problem {
   title: string
   content: string
   answer: string
-  category: string
-  difficulty: string
-  quizType: string
+  category: Category
+  difficulty: Difficulty
+  quizType: QuizType
+  choices: string[]
 }
 
 export interface PaginatedResponse {

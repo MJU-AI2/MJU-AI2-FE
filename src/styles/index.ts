@@ -48,12 +48,12 @@ export const Container = styled.div<ContainerProps & { theme: Theme }>`
 export const Button = styled.button<ButtonProps & { theme: Theme }>`
   padding: ${({ size = 'md' }) =>
     size === 'sm'
-      ? '0.5rem 1rem'
+      ? '0.5rem 1.25rem'
       : size === 'lg'
         ? '1rem 2rem'
         : '0.75rem 1.5rem'};
   font-size: ${({ size = 'md' }) =>
-    size === 'sm' ? '0.1rem' : size === 'lg' ? '1.25rem' : '1rem'};
+    size === 'sm' ? '0.9rem' : size === 'lg' ? '1.25rem' : '1rem'};
   border: none;
   border-radius: 8px;
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};

@@ -8,6 +8,8 @@ import {
   ProblemItem,
   ProblemTitle,
 } from '@/features/problem/retrieve/stlyes/problemList.styled'
+import { findLabelByValue } from '@/components/hooks/useFindLabel'
+import { DIFFICULTY_OPTIONS, QUIZ_TYPE_OPTIONS } from '@/constants/problem'
 
 interface ProblemListProps {
   problems: Problem[]
@@ -40,10 +42,10 @@ export const ProblemList = ({
               {problem.title}
             </ProblemTitle>
             <Text variant="caption" color="textLight">
-              난이도: {problem.difficulty}
+              난이도: {findLabelByValue(DIFFICULTY_OPTIONS, problem.difficulty)}
             </Text>
             <Text variant="caption" color="textLight">
-              학년: {problem.targetGrade}학년
+              문제 : {findLabelByValue(QUIZ_TYPE_OPTIONS, problem.quizType)}
             </Text>
           </ProblemContent>
         </ProblemItem>

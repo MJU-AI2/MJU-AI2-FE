@@ -6,7 +6,10 @@ import type {
   Problem,
   ProblemFormData,
 } from '@/types/domain.types'
-import type { UseProblemsQueryParams } from '@/types/hooks.types'
+import type {
+  SubmissionRequest,
+  UseProblemsQueryParams,
+} from '@/types/hooks.types'
 import axiosBlob from '@/services/axiosBlobInstance'
 
 export const problemsApi = {
@@ -14,6 +17,13 @@ export const problemsApi = {
     const { data } = await axiosInstance.post<ApiResponse<Problem>>(
       '/api/v1/quiz/generate',
       formData
+    )
+    return data.data
+  },
+
+  get: async (problemId: string): Promise<Problem> => {
+    const { data } = await axiosInstance.get<ApiResponse<Problem>>(
+      `/api/v1/quiz/${problemId}`
     )
     return data.data
   },
@@ -43,6 +53,10 @@ export const problemsApi = {
   createSet: async (): Promise<Blob> => {
     const response = await axiosBlob.get('/api/v1/quiz/QR/1')
     return response.data
+  },
+
+  submit: async (submitData: SubmissionRequest): Promise<void> => {
+    await axiosInstance.post('/api/v1/submissions', submitData)
   },
 }
 

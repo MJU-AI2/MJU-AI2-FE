@@ -6,6 +6,8 @@ import NotFound from '@/components/pages/NotFount'
 import Home from '@/components/pages/Home'
 import ProblemCreate from '@/features/problem/create'
 import ProblemRetrieve from '@/features/problem/retrieve'
+import ProblemDetailPage from '@/features/problem/retrieveDetail/problemDetail'
+import SolveProblemsPage from '@/features/problem/retrieveDetail/SolveProblems'
 
 const Router = () => {
   return (
@@ -15,9 +17,13 @@ const Router = () => {
           <Route index element={<Home />} />
           <Route path={'problems'} element={<ProblemRetrieve />} />
           <Route path={'problems/create'} element={<ProblemCreate />} />
+          <Route
+            path={'/problems/:problemId'}
+            element={<ProblemDetailPage />}
+          />
         </Route>
-        <Route path="/student" element={<ClassLayout />}>
-          <Route index element={<Home />} />
+        <Route path="/1" element={<ClassLayout />}>
+          <Route index element={<SolveProblemsPage />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
