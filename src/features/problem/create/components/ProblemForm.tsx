@@ -2,23 +2,21 @@ import React from 'react'
 
 import { FormSelect } from './FormSelect'
 
-import { Text, Flex, Button, Input, TextArea } from '@/styles'
+import { Flex, Button } from '@/styles'
 import type { ProblemFormData } from '@/types/domain.types'
 import {
-  GRADE_OPTIONS,
+  CATEGORY_OPTIONS,
   DIFFICULTY_OPTIONS,
-  PROBLEM_TYPE_OPTIONS,
+  QUIZ_TYPE_OPTIONS,
 } from '@/constants/problem'
+import { TopicOptionsManager } from '@/features/problem/create/components/TopicOptionsManager'
+import { FormEventHandler } from '@/features/problem/create/components/FormEventHandler'
 
 interface ProblemFormProps {
   formData: ProblemFormData
   isPending: boolean
   onSubmit: (e: React.FormEvent) => void
-  onChange: (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
-  ) => void
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
 }
 
 export const ProblemForm = ({
@@ -26,57 +24,55 @@ export const ProblemForm = ({
   isPending,
   onSubmit,
   onChange,
-}: ProblemFormProps) => (
-  <form onSubmit={onSubmit}>
-    <Flex direction="column" gap={1.5}>
-      <FormSelect
-        label="학년"
-        name="grade"
-        value={formData.grade}
-        options={GRADE_OPTIONS}
-        onChange={onChange}
-      />
+}: ProblemFormProps) => {
+  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newCategory = e.target.value
+    const defaultTopic = TopicOptionsManager.getDefaultTopic(newCategory)
 
-      <FormSelect
-        label="난이도"
-        name="difficulty"
-        value={formData.difficulty}
-        options={DIFFICULTY_OPTIONS}
-        onChange={onChange}
-      />
+    onChange(e)
+    onChange(FormEventHandler.createTopicChangeEvent(defaultTopic))
+  }
 
-      <Flex direction="column" gap={0.5}>
-        <Text variant="h5">주제</Text>
-        <Input
-          type="text"
+  return (
+    <form onSubmit={onSubmit}>
+      <Flex direction="column" gap={1.5}>
+        <FormSelect
+          label="카테고리"
+          name="category"
+          value={formData.category}
+          options={CATEGORY_OPTIONS}
+          onChange={handleCategoryChange}
+        />
+
+        <FormSelect
+          label="토픽"
           name="topic"
           value={formData.topic}
+          options={TopicOptionsManager.getTopicOptions(formData.category)}
           onChange={onChange}
-          placeholder="예시: 변수, 반복문, 함수"
+          disabled={!formData.category}
         />
-      </Flex>
 
-      <FormSelect
-        label="문제 형식"
-        name="type"
-        value={formData.type}
-        options={PROBLEM_TYPE_OPTIONS}
-        onChange={onChange}
-      />
-
-      <Flex direction="column" gap={0.5}>
-        <Text variant="h5">추가 설명</Text>
-        <TextArea
-          name="description"
-          value={formData.description}
+        <FormSelect
+          label="난이도"
+          name="difficulty"
+          value={formData.difficulty}
+          options={DIFFICULTY_OPTIONS}
           onChange={onChange}
-          placeholder="문제에 대한 구체적인 요구사항이나 맥락을 입력하세요..."
         />
-      </Flex>
 
-      <Button type="submit" disabled={isPending} size="lg" fullWidth>
-        {isPending ? '문제 생성 중...' : '문제 생성하기'}
-      </Button>
-    </Flex>
-  </form>
-)
+        <FormSelect
+          label="문제 형식"
+          name="quizType"
+          value={formData.quizType}
+          options={QUIZ_TYPE_OPTIONS}
+          onChange={onChange}
+        />
+
+        <Button type="submit" disabled={isPending} size="lg" fullWidth>
+          {isPending ? '문제 생성 중...' : '문제 생성하기'}
+        </Button>
+      </Flex>
+    </form>
+  )
+}

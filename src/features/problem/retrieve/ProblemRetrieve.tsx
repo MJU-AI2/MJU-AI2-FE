@@ -4,16 +4,25 @@ import { Flex, Container } from '@/styles'
 import { ProblemList } from '@/features/problem/retrieve/components/ProblemList'
 import { useProblemsQuery } from '@/features/problem/retrieve/hooks/useProblemsQuery'
 import { useDeleteProblemsMutation } from '@/features/problem/retrieve/hooks/useDeleteProblemsMutation'
-import { useCreateProblemSetMutation } from '@/features/problem/retrieve/hooks/useCreateProblemSetMutation'
 import { useProblemSelection } from '@/features/problem/retrieve/hooks/useProblemSelection'
 import { ProblemListHeader } from '@/features/problem/retrieve/components/ProblemListHeader'
 import { QRCodeModal } from '@/features/problem/retrieve/components/QRCodeModal'
+import { Pagination } from '@/components/ui/Pagination'
+import { useCreateProblemSet } from '@/features/problem/retrieve/hooks/useQRCode'
+
+const PAGE_SIZE = 10
 
 export const ProblemRetrieve = () => {
+  const [page, setPage] = useState(1)
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const { data: problems, isLoading } = useProblemsQuery()
+  const { createSet, qrCodeUrl } = useCreateProblemSet()
+
+  const { data: problemsData, isLoading } = useProblemsQuery({
+    page: page - 1,
+    size: PAGE_SIZE,
+  })
+
   const deleteProblemsMutation = useDeleteProblemsMutation()
-  const createProblemSetMutation = useCreateProblemSetMutation()
 
   const {
     selectedProblems,
@@ -21,7 +30,7 @@ export const ProblemRetrieve = () => {
     handleSelect,
     handleSelectAll,
     allSelected,
-  } = useProblemSelection(problems)
+  } = useProblemSelection(problemsData?.content)
 
   const handleDelete = () => {
     if (selectedProblems.length === 0) return
@@ -31,14 +40,19 @@ export const ProblemRetrieve = () => {
 
   const handleCreateSet = () => {
     if (selectedProblems.length === 0) return
-    createProblemSetMutation.mutate(selectedProblems, {
-      onSuccess: () => setIsModalOpen(true),
-    })
+    createSet()
+    setIsModalOpen(true)
+  }
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage)
+    setSelectedProblems([])
   }
 
   if (isLoading) {
     return <div>Loading...</div>
   }
+
+  const totalPages = Math.ceil((problemsData?.total || 0) / PAGE_SIZE)
 
   return (
     <Container>
@@ -53,20 +67,26 @@ export const ProblemRetrieve = () => {
           onDelete={handleDelete}
         />
         <ProblemList
-          problems={problems || []}
+          problems={problemsData?.content || []}
           selectedProblems={selectedProblems}
           onSelect={handleSelect}
         />
-        {createProblemSetMutation.data && (
+        <Flex justify={'evenly'}>
+          <Pagination
+            currentPage={page}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
+        </Flex>
+        {qrCodeUrl && (
           <QRCodeModal
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}
-            qrCodeUrl={createProblemSetMutation.data}
+            qrCodeUrl={qrCodeUrl}
           />
         )}
       </Flex>
     </Container>
   )
 }
-
 export default ProblemRetrieve

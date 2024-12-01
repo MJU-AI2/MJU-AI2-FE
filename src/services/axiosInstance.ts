@@ -35,7 +35,7 @@ axiosInstance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
 })
 
 axiosInstance.interceptors.response.use(
-  (response: AxiosResponse) => response.data,
+  (response: AxiosResponse) => response,
   (error: AxiosError<ErrorResponse>) => {
     if (error.response?.data) {
       return Promise.reject(new Error(error.response.data.data.message))

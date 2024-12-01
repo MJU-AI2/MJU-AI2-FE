@@ -1,29 +1,52 @@
-export type ProblemType = 'multiple_choice' | 'coding' | 'short_answer'
-export type DifficultyType = 'EASY' | 'MEDIUM' | 'HARD'
+import type {
+  ALGORITHM_LANGUAGE_OPTIONS,
+  CATEGORY_OPTIONS,
+  DIFFICULTY_OPTIONS,
+  QUIZ_TYPE_OPTIONS,
+  RESULT_TYPE_OPTIONS,
+  TOPIC_OPTIONS,
+} from '@/constants/problem'
+
+export type Category = (typeof CATEGORY_OPTIONS)[number]['value']
+export type Topic = (typeof TOPIC_OPTIONS)[number]['value']
+export type AlgorithmLanguage =
+  (typeof ALGORITHM_LANGUAGE_OPTIONS)[number]['value']
+export type Difficulty = (typeof DIFFICULTY_OPTIONS)[number]['value']
+export type QuizType = (typeof QUIZ_TYPE_OPTIONS)[number]['value']
+export type ResultType = (typeof RESULT_TYPE_OPTIONS)[number]['value']
 
 export interface ProblemTypeOption {
-  value: ProblemType
+  value: string
   label: string
 }
 
 export interface ProblemFormData {
-  grade: number
-  difficulty: DifficultyType
-  topic: string
-  type: ProblemType
-  description: string
+  category: Category
+  topic: Topic | AlgorithmLanguage
+  difficulty: Difficulty
+  quizType: QuizType
 }
 
 export interface Problem {
   id: string
   title: string
   content: string
-  description: string
-  difficulty: DifficultyType
-  targetGrade: number
-  hints: string[]
-  sampleAnswer: string
-  createdAt: string
-  qrCodeUrl?: string
-  isPublic: boolean
+  answer: string
+  category: Category
+  difficulty: Difficulty
+  quizType: QuizType
+  choices: string[]
+}
+
+export interface PaginatedResponse {
+  page: number
+  size: number
+  total: number
+  content: Problem[]
+}
+
+export interface QuizResult {
+  successRate: number
+  totalQuestions: number
+  correctAnswers: number
 }
